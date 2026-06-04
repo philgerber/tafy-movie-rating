@@ -1,0 +1,22 @@
+<article class="card mb-4">
+    <div class="card-body bg-light">
+        <img class="img-thumbnail float-end" alt=""
+            src={{ movie().imageUrl }}>
+        <header class="card-title">
+            <h2> {{ movie().title }} </h2>
+            <span class="badge rounded-pill text-bg-secondary">
+                Bewertung: {{ movie().rating }}
+            </span>
+        </header>
+        <p> {{ movie().description }} </p>
+        <p> {{ movie().year }} </p>
+        <button type="button"
+            class="btn btn-green"
+            aria-label="Rating erhöhen"
+            title="Rating erhöhen"> + </button>
+        <button type="button"
+            class="btn btn-red"
+            aria-label="Rating verringern"
+            title="Rating verringern"> - </button>
+    </div>
+</article>
