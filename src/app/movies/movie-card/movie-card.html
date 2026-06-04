@@ -4,19 +4,17 @@
             src={{ movie().imageUrl }}>
         <header class="card-title">
             <h2> {{ movie().title }} </h2>
-            <span class="badge rounded-pill text-bg-secondary">
-                Bewertung: {{ movie().rating }}
-            </span>
+            <app-rating-display [value]="movie().rating" />
         </header>
         <p> {{ movie().description }} </p>
         <p> {{ movie().year }} </p>
         <button type="button"
             class="btn btn-green"
             aria-label="Rating erhöhen"
-            title="Rating erhöhen"> + </button>
+            title="Rating erhöhen" (click)="doRateUp()"> + </button>
         <button type="button"
             class="btn btn-red"
             aria-label="Rating verringern"
-            title="Rating verringern"> - </button>
+            title="Rating verringern" (click)="doRateDown()"> - </button>
     </div>
 </article>
