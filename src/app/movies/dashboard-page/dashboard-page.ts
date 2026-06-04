@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Movie } from '../shared/movie';
 import { MovieCard } from '../movie-card/movie-card';
+import { MovieRatingHelper } from '../shared/movie-rating-helper';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -9,6 +10,8 @@ import { MovieCard } from '../movie-card/movie-card';
   styleUrl: './dashboard-page.scss',
 })
 export class DashboardPage {
+
+  #ratingHelper = inject(MovieRatingHelper);
 
     protected readonly movies = signal<Movie[]>([
     {
@@ -33,12 +36,28 @@ export class DashboardPage {
     },
   ]);
 
-  doRateUp(movie: Movie) {
-    console.log('UP', movie);
+  doRateUp(movie: Movie): void {
+    const ratedMovie = this.#ratingHelper.rateUp(movie);
+    this.#updateList(ratedMovie);
   }
 
-  doRateDown(movie: Movie) {
-    console.log('DOWN', movie);
+  doRateDown(movie: Movie): void {
+    const ratedMovie = this.#ratingHelper.rateDown(movie);
+    this.#updateList(ratedMovie);
+  }
+
+  #updateList(ratedMovie: Movie): void {
+    // [1,2,3,4,5,6].map(e => e * 10) // [10, 20, 30, 40, 50, 60]
+    // [1,2,3,4,5,6].filter(e => e % 2 === 0) // [2,4,6]
+    // Aufgabe: das neue Buch in die Liste einfügen
+    this.movies.update(oldList => {
+      return oldList.map(m => {
+        if (m.id == ratedMovie.id) {
+          return ratedMovie;
+        }
+        return m;
+      });
+    });
   }
 
 }

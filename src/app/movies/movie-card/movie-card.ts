@@ -19,6 +19,9 @@ export class MovieCard {
   readonly rateUp = output<Movie>();
   readonly rateDown = output<Movie>();
 
+  readonly maxRating = input<number>(10);
+  readonly minRating = input<number>(0);
+
   doRateUp() {
     this.rateUp.emit(this.movie());
   }

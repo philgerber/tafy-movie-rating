@@ -11,10 +11,12 @@
         <button type="button"
             class="btn btn-green"
             aria-label="Rating erhöhen"
-            title="Rating erhöhen" (click)="doRateUp()"> + </button>
+            title="Rating erhöhen" (click)="doRateUp()"
+            [disabled]="movie().rating >= maxRating()"> + </button>
         <button type="button"
             class="btn btn-red"
             aria-label="Rating verringern"
-            title="Rating verringern" (click)="doRateDown()"> - </button>
+            title="Rating verringern" (click)="doRateDown()"
+            [disabled]="movie().rating <= minRating()"> – </button>
     </div>
 </article>
