@@ -33,6 +33,12 @@ export class DashboardPage {
     },
   ]);
 
-  
+  doRateUp(movie: Movie) {
+    console.log('UP', movie);
+  }
+
+  doRateDown(movie: Movie) {
+    console.log('DOWN', movie);
+  }
 
 }
