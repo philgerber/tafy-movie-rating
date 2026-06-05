@@ -27,4 +27,7 @@ export class MovieCard {
     this.rateDown.emit(this.movie());
   }
 
+  readonly maxRating = input<number>(5);
+  readonly minRating = input<number>(1);
+
 }

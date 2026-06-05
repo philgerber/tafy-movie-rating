@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { Movie } from '../shared/movie';
 import { MovieCard } from '../movie-card/movie-card';
+import { MovieRatingHelper } from '../shared/movie-rating-helper';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -33,12 +34,29 @@ export class DashboardPage {
     },
   ]);
 
+  #ratingHelper = inject(MovieRatingHelper);
+
   doRateUp(movie: Movie) {
+    const ratedMovie = this.#ratingHelper.rateUp(movie);
+    this.#updateList(ratedMovie)
     console.log('UP', movie);
   }
 
   doRateDown(movie: Movie) {
+    const ratedMovie = this.#ratingHelper.rateDown(movie);
+    this.#updateList(ratedMovie)
     console.log('DOWN', movie);
+  }
+
+  #updateList(ratedMovie: Movie) {
+    this.movies.update(movies => {
+      return movies.map(m => {
+        if (m.id == ratedMovie.id) {
+          return ratedMovie;
+        }
+        return m;
+      })
+    })
   }
 
 }
