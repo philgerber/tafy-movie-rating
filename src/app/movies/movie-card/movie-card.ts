@@ -1,10 +1,11 @@
 import { Component, input, output } from '@angular/core';
 import { Movie } from '../shared/movie';
 import { RatingDisplay } from "../rating-display/rating-display";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-movie-card',
-  imports: [RatingDisplay],
+  imports: [RatingDisplay, RouterLink],
   templateUrl: './movie-card.html',
   styleUrl: './movie-card.scss',
 })
