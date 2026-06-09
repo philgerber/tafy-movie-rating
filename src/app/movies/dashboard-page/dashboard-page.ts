@@ -2,6 +2,7 @@ import { Component, signal, inject } from '@angular/core';
 import { Movie } from '../shared/movie';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieRatingHelper } from '../shared/movie-rating-helper';
+import { MovieStore } from '../shared/movie-store';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -11,30 +12,16 @@ import { MovieRatingHelper } from '../shared/movie-rating-helper';
 })
 export class DashboardPage {
 
-    protected readonly movies = signal<Movie[]>([
-    {
-      id: 1,
-      title: 'Inception',
-      description: 'Ein Dieb stiehlt Geheimnisse aus dem Unterbewusstsein.',
-      director: 'Christopher Nolan',
-      year: 2010,
-      genre: 'Science-Fiction',
-      rating: 5,
-      imageUrl: 'https://example.com/inception.jpg',
-    },
-    {
-      id: 2,
-      title: 'Parasite',
-      description: 'Eine arme Familie schleicht sich in ein reiches Haus ein.',
-      director: 'Bong Joon-ho',
-      year: 2019,
-      genre: 'Drama',
-      rating: 3,
-      imageUrl: 'https://example.com/parasite.jpg',
-    },
-  ]);
+    protected readonly movies = signal<Movie[]>([]);
 
   #ratingHelper = inject(MovieRatingHelper);
+  #store = inject(MovieStore);
+
+  constructor() {
+    this.#store.getAll().subscribe(receivedMovies => {
+      this.movies.set(receivedMovies);
+    });
+  }
 
   doRateUp(movie: Movie) {
     const ratedMovie = this.#ratingHelper.rateUp(movie);
