@@ -1,1 +1,9 @@
-<p>movie-search-page works!</p>
+<div class="form-group">
+  <input type="search" class="form-control" [formField]="searchForm">
+</div>
+
+<ul>
+  @for (b of results(); track b.id) {
+    <li>{{ b.title }}</li>
+  }
+</ul>

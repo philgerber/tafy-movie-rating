@@ -2,8 +2,8 @@ import { Component, signal, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MovieStore } from '../shared/movie-store';
 import { Movie } from '../shared/movie';
-import { map, switchMap } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter, map, switchMap } from 'rxjs';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-movie-details-page',
@@ -15,16 +15,10 @@ export class MovieDetailsPage {
 
   #route = inject(ActivatedRoute);
   #store = inject(MovieStore);
-  protected readonly movie = signal<Movie | undefined>(undefined);
-
-  constructor() {
-  this.#route.paramMap
-      .pipe(
-        map(params => Number(params.get('id'))),
-        switchMap(id => this.#store.getSingle(id)),
-        takeUntilDestroyed()
-      )
-      .subscribe(movie => this.movie.set(movie));
-  }
-
+  
+  protected readonly movie = toSignal(this.#route.paramMap.pipe(
+    map(params => Number(params.get('id'))),
+    filter(id => !isNaN(id)),
+    switchMap(id => this.#store.getSingle(id))
+  ));
 }

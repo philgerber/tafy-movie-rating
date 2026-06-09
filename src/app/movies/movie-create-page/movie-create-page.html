@@ -1,1 +1,61 @@
-<p>movie-create-page works!</p>
+<form novalidate (submit)="submitForm()">
+  <div class="form-group">
+    @let titleInvalid = movieForm.title().invalid() && movieForm.title().touched();
+    <label for="titleInput">Title</label>
+    <input type="text" id="titleInput" class="form-control"
+      [formField]="movieForm.title"
+      [aria-invalid]="titleInvalid"
+      [aria-errormessage]="titleInvalid ? 'titleError' : null">
+      @if (titleInvalid) {
+      <div class="feedback-error" role="alert" id="titleError">
+        Folgende Fehler sind aufgetreten:
+        <ul>
+          @for (e of movieForm.title().errors(); track e.kind) {
+            <li>{{ e.message }}</li>
+          }
+        </ul>
+      </div>
+
+    }
+    <p>touched: {{ movieForm.title().touched() }}</p>
+    <p>dirty: {{ movieForm.title().dirty() }}</p>
+    <p>invalid: {{ movieForm.title().invalid() }}</p>
+
+    <!--Ausblick: <app-form-errors [field]="movieForm.title" />-->
+  </div>
+
+  <div class="form-group">
+    <label for="directorInput">Director</label>
+    <input type="text" id="directorInput" class="form-control" [formField]="movieForm.director">
+  </div>
+
+  <div class="form-group">
+    <label for="descInput">Description</label>
+    <textarea id="descInput" class="form-control" [formField]="movieForm.description"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="genreInput">Genre</label>
+    <input type="text" id="genreInput" class="form-control" [formField]="movieForm.genre">
+  </div>
+
+  <div class="form-group">
+    <label for="yearInput">Year</label>
+    <input type="number" id="yearInput" class="form-control" [formField]="movieForm.year">
+  </div>
+
+  <div class="form-group">
+    <label for="ratingInput">Rating</label>
+    <input type="number" id="ratingInput" class="form-control" [formField]="movieForm.rating">
+  </div>
+
+  <div class="form-group">
+    <label for="imageUrlInput">Image URL</label>
+    <input type="text" id="imageUrlInput" class="form-control" [formField]="movieForm.imageUrl">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<pre>{{ movieForm().value() | json }}</pre>

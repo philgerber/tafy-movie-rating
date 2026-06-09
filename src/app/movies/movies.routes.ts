@@ -5,8 +5,8 @@ import { MovieCreatePage } from "./movie-create-page/movie-create-page";
 import { MovieSearchPage } from "./movie-search-page/movie-search-page";
 
 export const moviesRoutes: Routes = [
-  { path: 'movies', component: DashboardPage },
-  { path: 'movies/create', component: MovieCreatePage },
-  { path: 'movies/search', component: MovieSearchPage },
-  { path: 'movies/:id', component: MovieDetailsPage }
+  { path: '', component: DashboardPage },
+  { path: 'create', component: MovieCreatePage },
+  { path: 'search', component: MovieSearchPage },
+  { path: ':id', component: MovieDetailsPage }
 ];

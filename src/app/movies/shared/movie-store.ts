@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, httpResource } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Movie } from './movie';
+import { Movie, MovieCreate } from './movie';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,17 +13,23 @@ export class MovieStore {
   getAll(): Observable<Movie[]> {
     return this.#http.get<Movie[]>(this.#apiUrl + '/movies');
   }
-
-  getSingle(id: number): Observable<Movie> {
+  
+  getSingle(id: string): Observable<Movie> {
     return this.#http.get<Movie>(this.#apiUrl + '/movies/' + id);
   }
 
-  create(movie: Movie): Observable<Movie> {
+  create(movie: MovieCreate): Observable<Movie> {
     return this.#http.post<Movie>(this.#apiUrl + '/movies', movie);
   }
 
   search(term: string): Observable<Movie[]> {
-    return this.#http.get<Movie[]>(this.#apiUrl + '/movies/search/' + term);
+    if (!term.trim()) {
+      return this.getAll();
+    }
+
+    return this.#http.get<Movie[]>(
+      this.#apiUrl + '/movies?title:contains=' + encodeURIComponent(term)
+    );
   }
 
   delete(id: number): Observable<unknown> {

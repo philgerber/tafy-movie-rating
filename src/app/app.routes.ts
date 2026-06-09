@@ -6,6 +6,10 @@ export const routes: Routes = [
   ...moviesRoutes,
   // bei Weiterleitung vom leeren Pfad ist (fast) immer pathMatch:full nötig
   { path: '', redirectTo: 'movies', pathMatch: 'full' },
-  ...moviesRoutes,
+    // ...moviesRoutes,
+  {
+    path: 'movies',
+    loadChildren: () => import('./movies/movies.routes').then(m => m.moviesRoutes)
+  },
   { path: '**', component: ErrorPage }, // Wildcard-Route
 ];
