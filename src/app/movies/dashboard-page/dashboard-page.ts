@@ -12,7 +12,7 @@ import { MovieStore } from '../shared/movie-store';
 })
 export class DashboardPage {
 
-    protected readonly movies = signal<Movie[]>([]);
+  protected readonly movies = signal<Movie[]>([]);
 
   #ratingHelper = inject(MovieRatingHelper);
   #store = inject(MovieStore);
@@ -44,6 +44,17 @@ export class DashboardPage {
         return m;
       })
     })
+  }
+
+  doDeleteMovie(movie: Movie): void {
+    if (!confirm(`Film "${movie.title}" wirklich löschen?`)) {
+      return;
+    }
+
+    this.#store.delete(movie.id).subscribe(() => {
+      // this.books.reload();
+      this.movies.update(oldList => oldList.filter(m => m.id !== movie.id));
+    });
   }
 
 }
