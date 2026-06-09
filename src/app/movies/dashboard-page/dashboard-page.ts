@@ -52,7 +52,7 @@ export class DashboardPage {
     }
 
     this.#store.delete(movie.id).subscribe(() => {
-      // this.books.reload();
+      // this.movies.reload();
       this.movies.update(oldList => oldList.filter(m => m.id !== movie.id));
     });
   }

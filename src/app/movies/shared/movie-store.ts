@@ -14,8 +14,8 @@ export class MovieStore {
     return this.#http.get<Movie[]>(this.#apiUrl + '/movies');
   }
 
-  getSingle(isbn: string): Observable<Movie> {
-    return this.#http.get<Movie>(this.#apiUrl + '/movies/' + isbn);
+  getSingle(id: number): Observable<Movie> {
+    return this.#http.get<Movie>(this.#apiUrl + '/movies/' + id);
   }
 
   create(movie: Movie): Observable<Movie> {
