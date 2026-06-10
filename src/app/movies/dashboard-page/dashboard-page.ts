@@ -3,10 +3,12 @@ import { Movie } from '../shared/movie';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieRatingHelper } from '../shared/movie-rating-helper';
 import { MovieStore } from '../shared/movie-store';
+import { RouterLink } from '@angular/router';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 
 @Component({
   selector: 'app-dashboard-page',
-  imports: [MovieCard],
+  imports: [MovieCard, RouterLink, SbbButtonModule],
   templateUrl: './dashboard-page.html',
   styleUrl: './dashboard-page.scss',
 })
