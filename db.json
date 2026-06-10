@@ -1,0 +1,35 @@
+{
+  "movies": [
+    {
+      "id": "1",
+      "title": "Inception",
+      "description": "A thief enters dreams to steal secrets.",
+      "director": "Christopher Nolan",
+      "year": 2010,
+      "genre": "Sci-Fi",
+      "rating": 5,
+      "imageUrl": "https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg"
+    },
+    {
+      "id": "2",
+      "title": "Interstellar",
+      "description": "A team travels through a wormhole to save humanity.",
+      "director": "Christopher Nolan",
+      "year": 2014,
+      "genre": "Sci-Fi",
+      "rating": 5,
+      "imageUrl": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
+    },
+    {
+      "id": "3",
+      "title": "The Dark Knight",
+      "description": "Batman faces the Joker, a criminal mastermind who plunges Gotham into chaos.",
+      "director": "Christopher Nolan",
+      "year": 2008,
+      "genre": "Action",
+      "rating": 5,
+      "imageUrl": "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
