@@ -1,1 +1,6 @@
-<p>movie-details-page works!</p>
+@if (movie(); as m) {
+    <h2>{{ m.title }} </h2>
+    <p>{{ m.description }} </p>
+}
+
+<a routerLink="/movies">Zum Dashboard</a>

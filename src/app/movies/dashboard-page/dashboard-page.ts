@@ -35,6 +35,15 @@ export class DashboardPage {
     console.log('DOWN', movie);
   }
 
+  doDeleteMovie(movie: Movie): void {
+    if (!confirm(`Film "${movie.title}" wirklich löschen?`)) {
+      return;
+    }
+    this.#store.delete(movie.id).subscribe(() => {
+      this.movies.update(oldList => oldList.filter(m => m.id !== movie.id));
+    });
+  }
+
   #updateList(ratedMovie: Movie) {
     this.movies.update(movies => {
       return movies.map(m => {

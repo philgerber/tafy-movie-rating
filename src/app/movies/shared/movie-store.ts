@@ -26,5 +26,9 @@ export class MovieStore {
   search(term: string): Observable<Movie[]> {
     return this.#http.get<Movie[]>(this.#apiUrl + '/movies/search/' + term)
   }
+
+  delete(id: number): Observable<unknown> {
+    return this.#http.delete<unknown>(this.#apiUrl + '/movies/' + id);
+  }
   
 }
