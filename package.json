@@ -24,12 +24,15 @@
   "packageManager": "npm@11.12.1",
   "dependencies": {
     "@angular-schule/workshop-styles": "^1.9.0",
+    "@angular/animations": "^21.1.0",
+    "@angular/cdk": "^21.2.14",
     "@angular/common": "^21.1.0",
     "@angular/compiler": "^21.1.0",
     "@angular/core": "^21.1.0",
     "@angular/forms": "^21.1.0",
     "@angular/platform-browser": "^21.1.0",
     "@angular/router": "^21.1.0",
+    "@sbb-esta/angular": "^21.0.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

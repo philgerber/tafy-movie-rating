@@ -8,3 +8,5 @@ export interface Movie {
     rating: number;
     imageUrl: string;
 }
+
+export type MovieCreate = Omit<Movie, 'id'>;
