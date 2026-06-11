@@ -67,7 +67,7 @@ export class MovieCreatePage {
     const movie: MovieCreate = {
       ...formValue,
       year: formValue.year,
-      rating: 0,
+      rating: 1,
     };
 
     this.isSaving.set(true);
