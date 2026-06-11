@@ -1,0 +1,57 @@
+<div class="create-page">
+    <h1>Neuen Film erfassen</h1>
+
+    <form [formGroup]="movieForm" (ngSubmit)="doCreate()" class="movie-form">
+
+        <sbb-form-field label="Titel" class="form-field">
+            <input sbbInput formControlName="title">
+
+            @if (movieForm.controls.title.invalid && movieForm.controls.title.touched) {
+                <sbb-error>Titel ist erforderlich</sbb-error>
+            }
+        </sbb-form-field>
+
+        <sbb-form-field label="Description" class="form-field full-width">
+            <input sbbInput formControlName="description">
+
+            @if (movieForm.controls.description.invalid && movieForm.controls.description.touched) {
+                <sbb-error>Beschreibung ist erforderlich</sbb-error>
+            }
+        </sbb-form-field>
+
+        <sbb-form-field label="Regisseur" class="form-field">
+            <input sbbInput formControlName="director">
+
+            @if (movieForm.controls.director.invalid && movieForm.controls.director.touched) {
+                <sbb-error>Regisseur ist erforderlich</sbb-error>
+            }
+        </sbb-form-field>
+
+        <sbb-form-field label="Jahr" class="form-field">
+            <input sbbInput type="number" formControlName="year">
+
+            @if (movieForm.controls.year.invalid && movieForm.controls.year.touched) {
+                <sbb-error>Jahr ist erforderlich</sbb-error>
+            }
+        </sbb-form-field>
+
+        <sbb-form-field label="Genre" class="form-field">
+            <input sbbInput formControlName="genre">
+
+            @if (movieForm.controls.genre.invalid && movieForm.controls.genre.touched) {
+                <sbb-error>Genre ist erforderlich</sbb-error>
+            }
+        </sbb-form-field>
+
+        <sbb-form-field label="Bild URL" class="form-field full-width">
+            <input sbbInput formControlName="imageUrl">
+        </sbb-form-field>
+
+        <div class="actions">
+            <button sbb-button type="submit" [disabled]="isSaving()">
+                Film speichern
+            </button>
+        </div>
+
+    </form>
+</div>
